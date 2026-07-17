@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atharv Malusare — Software Engineer</title>
+<meta name="description" content="Atharv Malusare — Software Engineer & graduate CS student at Indiana University Bloomington. Backend systems, applied research, computer vision.">
+<meta property="og:title" content="Atharv Malusare — Software Engineer">
+<meta property="og:description" content="Backend systems, applied research, and shipping things that hold up under real use.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
+<style>
+  :root{
+    --bg:#0a0a0f;
+    --card:#15151d;
+    --border:#26262f;
+    --text:#e4e4e9;
+    --muted:#8b8b96;
+    --accent:#5eead4;
+    --accent2:#818cf8;
+    --mono: 'JetBrains Mono','Fira Code',monospace;
+    --sans: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;}
+  ::selection{background:var(--accent);color:#000;}
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .container{max-width:900px;margin:0 auto;padding:0 24px;}
+
+  nav{position:sticky;top:0;z-index:100;background:rgba(10,10,15,0.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);}
+  nav .container{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;flex-wrap:wrap;}
+  .logo{font-family:var(--mono);font-weight:700;color:var(--accent);font-size:1.1rem;}
+  .navlinks{display:flex;gap:20px;list-style:none;flex-wrap:wrap;}
+  .navlinks a{color:var(--muted);font-size:0.85rem;font-family:var(--mono);}
+  .navlinks a:hover{color:var(--accent);text-decoration:none;}
+
+  /* Terminal hero */
+  header.hero{padding:90px 0 70px;border-bottom:1px solid var(--border);}
+  .terminal{
+    background:var(--card);border:1px solid var(--border);border-radius:10px;
+    max-width:640px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.4);
+  }
+  .term-bar{display:flex;align-items:center;gap:6px;padding:10px 14px;border-bottom:1px solid var(--border);background:#111118;}
+  .dot{width:10px;height:10px;border-radius:50%;}
+  .dot.red{background:#ff5f56;}
+  .dot.yellow{background:#ffbd2e;}
+  .dot.green{background:#27c93f;}
+  .term-title{margin-left:10px;font-family:var(--mono);font-size:0.75rem;color:var(--muted);}
+  .term-body{padding:20px 22px;font-family:var(--mono);font-size:0.92rem;min-height:210px;}
+  .term-line{color:var(--muted);margin-bottom:4px;}
+  .term-prompt{color:var(--accent2);}
+  .term-output{color:var(--text);margin:2px 0 14px 0;white-space:pre-wrap;}
+  .cursor{display:inline-block;width:8px;height:1em;background:var(--accent);vertical-align:middle;animation:blink 1s step-end infinite;}
+  @keyframes blink{50%{opacity:0;}}
+
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px;}
+  .btn{font-family:var(--mono);font-size:0.9rem;padding:10px 20px;border-radius:6px;border:1px solid var(--border);color:var(--text);transition:all .15s ease;display:inline-block;}
+  .btn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none;transform:translateY(-1px);}
+  .btn.primary{background:var(--accent);color:#05141f;border-color:var(--accent);font-weight:600;}
+  .btn.primary:hover{background:#7ff2df;color:#05141f;}
+  .socials{display:flex;gap:16px;font-family:var(--mono);font-size:0.85rem;flex-wrap:wrap;margin-top:20px;}
+  .socials a{color:var(--muted);}
+  .socials a:hover{color:var(--accent2);}
+
+  section{padding:70px 0;border-bottom:1px solid var(--border);}
+  section:last-of-type{border-bottom:none;}
+  .section-title{font-family:var(--mono);font-size:0.85rem;color:var(--accent2);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;}
+  h2{font-size:1.8rem;margin-bottom:32px;}
+
+  .about-text p{color:var(--muted);margin-bottom:16px;max-width:700px;}
+  .about-text strong{color:var(--text);}
+
+  /* Now section */
+  .now-card{
+    background:var(--card);border:1px solid var(--border);border-radius:10px;padding:24px;
+    display:flex;gap:16px;align-items:flex-start;
+  }
+  .now-dot{width:10px;height:10px;border-radius:50%;background:var(--accent);margin-top:6px;flex-shrink:0;box-shadow:0 0 12px var(--accent);}
+  .now-list{list-style:none;color:var(--muted);font-size:0.95rem;}
+  .now-list li{margin-bottom:10px;}
+  .now-list li:last-child{margin-bottom:0;}
+  .now-list strong{color:var(--text);}
+
+  .exp-item{display:grid;grid-template-columns:1fr;gap:6px;padding:22px 0;border-bottom:1px solid var(--border);}
+  .exp-item:last-child{border-bottom:none;padding-bottom:0;}
+  .exp-head{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;align-items:baseline;}
+  .exp-role{font-weight:600;font-size:1.05rem;}
+  .exp-org{color:var(--accent);font-family:var(--mono);font-size:0.9rem;}
+  .exp-date{color:var(--muted);font-family:var(--mono);font-size:0.82rem;white-space:nowrap;}
+  .exp-item ul{margin:10px 0 0 18px;color:var(--muted);font-size:0.95rem;}
+  .exp-item li{margin-bottom:6px;}
+
+  /* Project deep-dives */
+  .project-item{background:var(--card);border:1px solid var(--border);border-radius:10px;margin-bottom:16px;overflow:hidden;}
+  .project-item:last-child{margin-bottom:0;}
+  .project-summary{cursor:pointer;padding:20px 22px;display:flex;justify-content:space-between;align-items:center;gap:12px;list-style:none;}
+  .project-summary::-webkit-details-marker{display:none;}
+  .project-summary-left{flex:1;}
+  .project-title{font-weight:600;font-size:1.05rem;margin-bottom:6px;}
+  .project-oneline{color:var(--muted);font-size:0.88rem;}
+  .chevron{font-family:var(--mono);color:var(--accent);font-size:0.9rem;transition:transform .2s ease;flex-shrink:0;}
+  details[open] .chevron{transform:rotate(90deg);}
+  .project-detail{padding:0 22px 22px;border-top:1px solid var(--border);}
+  .pd-block{margin-top:16px;}
+  .pd-label{font-family:var(--mono);font-size:0.72rem;color:var(--accent2);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;}
+  .pd-text{color:var(--muted);font-size:0.9rem;}
+  .tag-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px;}
+  .tag{font-family:var(--mono);font-size:0.72rem;color:var(--accent2);background:rgba(129,140,248,0.1);border:1px solid rgba(129,140,248,0.25);padding:3px 8px;border-radius:4px;}
+
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;}
+  .skill-cat h3{font-size:0.95rem;margin-bottom:10px;color:var(--text);}
+  .skill-cat ul{list-style:none;color:var(--muted);font-size:0.88rem;}
+  .skill-cat li{margin-bottom:6px;padding-left:14px;position:relative;}
+  .skill-cat li::before{content:"—";position:absolute;left:0;color:var(--border);}
+
+  /* How I think */
+  .think-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;}
+  .think-card{border:1px solid var(--border);border-radius:10px;padding:20px;}
+  .think-num{font-family:var(--mono);color:var(--accent);font-size:0.85rem;margin-bottom:8px;}
+  .think-title{font-weight:600;margin-bottom:8px;}
+  .think-text{color:var(--muted);font-size:0.88rem;}
+
+  .pub-item{margin-bottom:22px;}
+  .pub-item:last-child{margin-bottom:0;}
+  .pub-title{font-weight:600;margin-bottom:6px;}
+  .pub-desc{color:var(--muted);font-size:0.9rem;margin-bottom:6px;}
+
+  footer{padding:50px 0;text-align:center;}
+  footer .socials{justify-content:center;margin-bottom:16px;}
+  footer p{color:var(--muted);font-size:0.85rem;font-family:var(--mono);}
+
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in-view{opacity:1;transform:translateY(0);}
+
+  @media (max-width:768px){
+    .container{padding:0 18px;}
+    h2{font-size:1.5rem;margin-bottom:24px;}
+    .exp-head{flex-direction:column;gap:4px;}
+    .exp-date{order:-1;}
+  }
+
+  @media (max-width:600px){
+    nav .container{padding:14px 18px;}
+    .navlinks{gap:10px;width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:2px;}
+    .navlinks::-webkit-scrollbar{display:none;}
+    .navlinks a{font-size:0.72rem;white-space:nowrap;}
+    header.hero{padding:48px 0 36px;}
+    section{padding:40px 0;}
+    .term-body{font-size:0.78rem;padding:14px;min-height:auto;}
+    .term-title{font-size:0.68rem;}
+    .cta-row{flex-direction:column;align-items:stretch;}
+    .btn{text-align:center;padding:13px 20px;font-size:0.85rem;}
+    .socials{gap:12px;font-size:0.78rem;}
+    .now-card{flex-direction:column;padding:18px;}
+    .project-summary{padding:16px 18px;}
+    .project-detail{padding:0 18px 18px;}
+    .project-title{font-size:0.98rem;}
+    .skills-grid,.think-grid{grid-template-columns:1fr;}
+  }
+
+  @media (max-width:380px){
+    h1, .term-output{font-size:0.95rem;}
+    .logo{font-size:1rem;}
+    .term-body{font-size:0.72rem;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <div class="logo">atharv.dev</div>
+    <ul class="navlinks">
+      <li><a href="#about">about</a></li>
+      <li><a href="#now">now</a></li>
+      <li><a href="#experience">experience</a></li>
+      <li><a href="#projects">projects</a></li>
+      <li><a href="#think">how i think</a></li>
+      <li><a href="#skills">skills</a></li>
+      <li><a href="#writing">writing</a></li>
+      <li><a href="#contact">contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <div class="terminal">
+      <div class="term-bar">
+        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+        <span class="term-title">atharv@bloomington: ~</span>
+      </div>
+      <div class="term-body">
+        <div class="term-line"><span class="term-prompt">$</span> whoami</div>
+        <div class="term-output">Atharv Malusare — Software Engineer &amp; graduate CS student, Indiana University Bloomington</div>
+        <div class="term-line"><span class="term-prompt">$</span> cat focus.txt</div>
+        <div class="term-output">Backend systems, applied research, and shipping things that hold up under real use — from healthcare data tools to computer vision pipelines.</div>
+        <div class="term-line"><span class="term-prompt">$</span> ./open_to.sh --roles</div>
+        <div class="term-output">software engineering · backend · research engineering · applied ML<span class="cursor"></span></div>
+      </div>
+    </div>
+    <div class="cta-row">
+      <a class="btn primary" href="Atharv_Malusare_Resume.pdf" download="Atharv_Malusare_Resume.pdf">Download Resume ⬇</a>
+      <a class="btn" href="#projects">Projects</a>
+      <a class="btn" href="#contact">Contact</a>
+    </div>
+    <div class="socials">
+      <a href="https://github.com/atharvMalusare" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/atharvmalusare" target="_blank">LinkedIn</a>
+      <a href="https://x.com/AtharvMalusare" target="_blank">Twitter</a>
+      <a href="https://medium.com/@atharvmalusare" target="_blank">Medium</a>
+      <a href="https://bento.me/atharvmalusare" target="_blank">Bento</a>
+      <a href="https://www.instagram.com/atharvmalusare/" target="_blank">Instagram</a>
+    </div>
+  </div>
+</header>
+
+<section class="reveal" id="about">
+  <div class="container">
+    <div class="section-title">01 · About</div>
+    <h2>About Me</h2>
+    <div class="about-text">
+      <p><strong>Where I'm coming from.</strong> I'm a graduate student at Indiana University Bloomington, working toward a Master's in Computer Science (Class of 2027). Before that, I studied at Marathwada Mitra Mandal's College of Engineering (SPPU) in Pune, graduating with Honours in Data Science and a CGPA of 8.92 — the years where I went from writing my first "hello world" to shipping systems other people actually used.</p>
+      <p><strong>What I've been doing.</strong> I've spent the last couple of years moving between research and production: building chatbot infrastructure at CDAC Pune that handled real daily traffic, automating data pipelines at IBN Technology, and now, as an AI Development Intern at TrueScripts Management Services, turning messy business questions into workflows that non-technical teams can actually run themselves. Outside of internships, I write occasionally and compete on Kaggle when a problem grabs me.</p>
+      <p><strong>Off the clock.</strong> I follow Manchester United far too closely and can talk F1 strategy longer than most people want to listen. I try to keep CS from being a full-time desk job — gym sessions, long walks, video games, and too much time on YouTube (mostly Sidemen) keep me sane.</p>
+    </div>
+  </div>
+</section>
+
+<section class="reveal" id="now">
+  <div class="container">
+    <div class="section-title">02 · Right Now</div>
+    <h2>What I'm Up To</h2>
+    <div class="now-card">
+      <span class="now-dot"></span>
+      <ul class="now-list">
+        <li><strong>Working:</strong> building self-serve agent workflows over healthcare claims data at TrueScripts.</li>
+        <li><strong>Learning:</strong> going deeper on multi-object tracking after wrapping the football analysis pipeline, and working through my AWS Solutions Architect certification.</li>
+        <li><strong>Reading up on:</strong> systems design patterns for agent-driven tools, since most of what I build now needs to survive contact with non-technical users.</li>
+        <li><strong>Watching:</strong> the second half of the F1 season and hoping United string together more than three good games in a row.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="reveal" id="experience">
+  <div class="container">
+    <div class="section-title">03 · Experience</div>
+    <h2>Experience & Education</h2>
+
+    <div class="exp-item">
+      <div class="exp-head">
+        <div><span class="exp-role">AI Development Intern</span> <span class="exp-org">· TrueScripts Management Services</span></div>
+        <div class="exp-date">Jun 2026 – Present</div>
+      </div>
+      <ul>
+        <li>Built and tested agents that turn vague business questions into multi-step, decision-support workflows over real, de-identified healthcare claims data — aimed at non-technical teams who need answers without waiting on engineering.</li>
+        <li>Handled the underlying database work and the end-to-end wiring of the AI automation, from querying claims data to returning workflow results teams could act on directly.</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-head">
+        <div><span class="exp-role">Project Intern</span> <span class="exp-org">· CDAC Pune</span></div>
+        <div class="exp-date">Sep 2024 – Jul 2025</div>
+      </div>
+      <ul>
+        <li>Led the build of AyurSanvaad, a chatbot system fielding 500+ queries a day across 20+ Indian languages.</li>
+        <li>Cut response latency by 40% and co-authored a paper on the architecture, published at ICLI 2025.</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-head">
+        <div><span class="exp-role">AI Intern</span> <span class="exp-org">· IBN Technology</span></div>
+        <div class="exp-date">Mar 2024 – Jun 2024</div>
+      </div>
+      <ul>
+        <li>Rebuilt manual data ingestion as an automated Python/SQL pipeline, cutting prep time by 30%.</li>
+        <li>Wired trained models into live server pipelines so outputs reached production without manual handoff.</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-head">
+        <div><span class="exp-role">MS, Computer Science</span> <span class="exp-org">· Indiana University Bloomington</span></div>
+        <div class="exp-date">Aug 2025 – Present</div>
+      </div>
+      <ul>
+        <li>Coursework spanning applied algorithms, applied machine learning, and modern software engineering practice.</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-head">
+        <div><span class="exp-role">B.E., Computer Science (Honours, Data Science)</span> <span class="exp-org">· MMCOE, SPPU</span></div>
+        <div class="exp-date">2021 – 2025</div>
+      </div>
+      <ul>
+        <li>Graduated with an 8.92 CGPA; coursework and electives spanned systems, deep learning, and computer vision.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="reveal" id="projects">
+  <div class="container">
+    <div class="section-title">04 · Projects</div>
+    <h2>Selected Work</h2>
+
+    <details class="project-item">
+      <summary class="project-summary">
+        <div class="project-summary-left">
+          <div class="project-title">SmartLink — Context-Aware URL Shortener & Routing Engine <span style="color:var(--muted);font-weight:400;">— 2026</span></div>
+          <div class="project-oneline">A full-stack link router that decides where traffic goes based on device, location, referrer, and time.</div>
+        </div>
+        <span class="chevron">▶</span>
+      </summary>
+      <div class="project-detail">
+        <div class="pd-block">
+          <div class="pd-label">Problem</div>
+          <div class="pd-text">Most URL shorteners just redirect. Real traffic routing needs to account for who's clicking, from where, and when — without adding noticeable latency.</div>
+        </div>
+        <div class="pd-block">
+          <div class="pd-label">Approach</div>
+          <div class="pd-text">Built a full-stack system with FastAPI, React, PostgreSQL, and Redis, centered on a custom priority-ordered rule engine that routes traffic by device, geolocation, referrer, and time of day. Used Redis caching to keep redirects fast, and added custom sliding-window rate limiting and A/B traffic splitting on top.</div>
+        </div>
+        <div class="pd-block">
+          <div class="pd-label">Result</div>
+          <div class="pd-text">Sub-10ms redirects in production, plus a real-time analytics dashboard for tracking traffic patterns and split-test performance.</div>
+        </div>
+        <div class="tag-row"><span class="tag">FastAPI</span><span class="tag">React</span><span class="tag">PostgreSQL</span><span class="tag">Redis</span></div>
+        <div class="pd-block"><a href="https://github.com/AtharvMalusare/smartlink" target="_blank">View on GitHub ↗</a></div>
+      </div>
+    </details>
+
+    <details class="project-item">
+      <summary class="project-summary">
+        <div class="project-summary-left">
+          <div class="project-title">Tactical Football Analysis Pipeline <span style="color:var(--muted);font-weight:400;">— 2026</span></div>
+          <div class="project-oneline">Tracking players and extracting tactical patterns from raw match footage.</div>
+        </div>
+        <span class="chevron">▶</span>
+      </summary>
+      <div class="project-detail">
+        <div class="pd-block">
+          <div class="pd-label">Problem</div>
+          <div class="pd-text">Match footage is dense and hard to analyze tactically by eye alone — coaches and analysts need structured player and ball positions, not just video.</div>
+        </div>
+        <div class="pd-block">
+          <div class="pd-label">Approach</div>
+          <div class="pd-text">Built a detection and tracking pipeline using YOLO11 for player/ball detection and ByteTrack for consistent multi-object tracking across frames, then translated raw tracks into positional and tactical summaries.</div>
+        </div>
+        <div class="pd-block">
+          <div class="pd-label">Result</div>
+          <div class="pd-text">Presented the work as a public poster at the Luddy School (May 2026) to a mixed academic audience — a good test of explaining a fairly technical pipeline to people outside the field.</div>
+        </div>
+        <div class="pd-block">
+          <div class="pd-label">Next time</div>
+          <div class="pd-text">Tracking still drifts under heavy occlusion and fast camera pans — the next iteration focuses on re-identification to hold IDs through those gaps.</div>
+        </div>
+        <div class="tag-row"><span class="tag">Python</span><span class="tag">YOLO11</span><span class="tag">ByteTrack</span><span class="tag">Computer Vision</span></div>
+        <div class="pd-block"><a href="https://github.com/AtharvMalusare/Football-Analysis" target="_blank">View on GitHub ↗</a></div>
+      </div>
+    </details>
+
+    <details class="project-item">
+      <summary class="project-summary">
+        <div class="project-summary-left">
+          <div class="project-title">AyurSanvaad — Multilingual Consultation Chatbot <span style="color:var(--muted);font-weight:400;">— 2024–2025</span></div>
+          <div class="project-oneline">A retrieval-backed chatbot delivering Ayurvedic guidance in 20+ Indian languages.</div>
+        </div>
+        <span class="chevron">▶</span>
+      </summary>
+      <div class="project-detail">
+        <div class="pd-block">
+          <div class="pd-label">Problem</div>
+          <div class="pd-text">Reliable Ayurvedic guidance is hard to access for people who don't speak English or Hindi, and generic chat models hallucinate on domain-specific questions.</div>
+        </div>
+        <div class="pd-block">
+          <div class="pd-label">Approach</div>
+          <div class="pd-text">Built a retrieval pipeline pairing Llama with a ChromaDB vector store, grounding responses in a curated knowledge base rather than the model's raw output, and tuned it to hold up across 20+ languages.</div>
+        </div>
+        <div class="pd-block">
+          <div class="pd-label">Result</div>
+          <div class="pd-text">Handled 500+ queries a day in production, improved response relevance by 25% over the baseline, and became the basis of a peer-reviewed paper at ICLI 2025.</div>
+        </div>
+        <div class="tag-row"><span class="tag">Retrieval Systems</span><span class="tag">LangChain</span><span class="tag">Vector DB</span><span class="tag">Multilingual NLP</span></div>
+      </div>
+    </details>
+
+    <details class="project-item">
+      <summary class="project-summary">
+        <div class="project-summary-left">
+          <div class="project-title">Diagnostic Imaging Classifier <span style="color:var(--muted);font-weight:400;">— 2023</span></div>
+          <div class="project-oneline">A CNN-based tool flagging pneumonia and brain tumors from scans.</div>
+        </div>
+        <span class="chevron">▶</span>
+      </summary>
+      <div class="project-detail">
+        <div class="pd-block">
+          <div class="pd-label">Problem</div>
+          <div class="pd-text">Rapid triage in imaging-heavy diagnostics benefits from a fast first pass that flags likely cases for review.</div>
+        </div>
+        <div class="pd-block">
+          <div class="pd-label">Approach</div>
+          <div class="pd-text">Trained separate CNN classifiers on X-ray and MRI datasets to detect pneumonia and brain tumors respectively, tuning for a balance between recall and false-positive rate appropriate for a triage tool.</div>
+        </div>
+        <div class="pd-block">
+          <div class="pd-label">Result</div>
+          <div class="pd-text">Reached 95% accuracy across both classifiers, demonstrating the approach was viable as a triage aid rather than a diagnostic replacement.</div>
+        </div>
+        <div class="tag-row"><span class="tag">CNNs</span><span class="tag">TensorFlow</span><span class="tag">Medical Imaging</span></div>
+        <div class="pd-block"><a href="https://github.com/AtharvMalusare/Pneumonia-and-Brain-Tumor-Detection-" target="_blank">View on GitHub ↗</a></div>
+      </div>
+    </details>
+
+    <details class="project-item">
+      <summary class="project-summary">
+        <div class="project-summary-left">
+          <div class="project-title">Monocular Depth Estimation <span style="color:var(--muted);font-weight:400;">— 2023–2024</span></div>
+          <div class="project-oneline">Improving single-image depth prediction with a custom attention block.</div>
+        </div>
+        <span class="chevron">▶</span>
+      </summary>
+      <div class="project-detail">
+        <div class="pd-block">
+          <div class="pd-label">Problem</div>
+          <div class="pd-text">Standard MiDaS depth estimation loses accuracy in cluttered indoor scenes, where depth cues are subtler than in outdoor imagery.</div>
+        </div>
+        <div class="pd-block">
+          <div class="pd-label">Approach</div>
+          <div class="pd-text">Integrated a novel attention mechanism into the MiDaS architecture, specifically targeting the failure modes seen in indoor environments.</div>
+        </div>
+        <div class="pd-block">
+          <div class="pd-label">Result</div>
+          <div class="pd-text">Cut indoor depth error by 10% and improved generalization to unseen environments; wrote it up as a seminar research project.</div>
+        </div>
+        <div class="tag-row"><span class="tag">Computer Vision</span><span class="tag">MiDaS</span><span class="tag">Research</span></div>
+        <div class="pd-block"><a href="https://github.com/AtharvMalusare/Monocular_Depth_Estimation" target="_blank">View on GitHub ↗</a></div>
+      </div>
+    </details>
+
+    <details class="project-item">
+      <summary class="project-summary">
+        <div class="project-summary-left">
+          <div class="project-title">Helmet & Number Plate Detection <span style="color:var(--muted);font-weight:400;">— 2023</span></div>
+          <div class="project-oneline">Real-time traffic compliance monitoring from live video.</div>
+        </div>
+        <span class="chevron">▶</span>
+      </summary>
+      <div class="project-detail">
+        <div class="pd-block">
+          <div class="pd-label">Problem</div>
+          <div class="pd-text">Manual enforcement of helmet laws doesn't scale — traffic authorities need automated, real-time compliance detection.</div>
+        </div>
+        <div class="pd-block">
+          <div class="pd-label">Approach</div>
+          <div class="pd-text">Combined YOLOv5 for rider/helmet detection with OpenCV-based plate localization, built to run against live camera feeds.</div>
+        </div>
+        <div class="pd-block">
+          <div class="pd-label">Result</div>
+          <div class="pd-text">Reached 92% mAP, detecting non-compliant riders and capturing their plates in the same pass.</div>
+        </div>
+        <div class="tag-row"><span class="tag">YOLOv5</span><span class="tag">OpenCV</span><span class="tag">Object Detection</span></div>
+        <div class="pd-block"><a href="https://github.com/AtharvMalusare/Helmet-and-Number-Plate-Detection" target="_blank">View on GitHub ↗</a></div>
+      </div>
+    </details>
+  </div>
+</section>
+
+<section class="reveal" id="think">
+  <div class="container">
+    <div class="section-title">05 · Process</div>
+    <h2>How I Think</h2>
+    <div class="think-grid">
+      <div class="think-card">
+        <div class="think-num">01</div>
+        <div class="think-title">Start with the ambiguous ask</div>
+        <div class="think-text">Most real problems arrive vague — "help our team understand this data." I spend time turning that into a concrete, testable workflow before writing code.</div>
+      </div>
+      <div class="think-card">
+        <div class="think-num">02</div>
+        <div class="think-title">Build for the person who isn't technical</div>
+        <div class="think-text">A lot of what I build is used by people who don't want to think about how it works. If it needs a manual, I've usually designed it wrong.</div>
+      </div>
+      <div class="think-card">
+        <div class="think-num">03</div>
+        <div class="think-title">Instrument before you optimize</div>
+        <div class="think-text">Latency and accuracy numbers I cite in my projects came from actually measuring, not guessing — I'd rather know where time is going than assume.</div>
+      </div>
+      <div class="think-card">
+        <div class="think-num">04</div>
+        <div class="think-title">Document as you go</div>
+        <div class="think-text">Writing things down while building — not after — is the difference between a teammate ramping up in a day versus a week.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="reveal" id="skills">
+  <div class="container">
+    <div class="section-title">06 · Toolkit</div>
+    <h2>Languages & Tools</h2>
+    <div class="skills-grid">
+      <div class="skill-cat">
+        <h3>Languages</h3>
+        <ul>
+          <li>Python, C++, Java, SQL, JavaScript</li>
+        </ul>
+      </div>
+      <div class="skill-cat">
+        <h3>Backend & APIs</h3>
+        <ul>
+          <li>FastAPI, Flask</li>
+          <li>REST APIs, PostgreSQL</li>
+          <li>Vector stores (Pinecone, Chroma)</li>
+        </ul>
+      </div>
+      <div class="skill-cat">
+        <h3>Frontend</h3>
+        <ul>
+          <li>React.js, Tailwind CSS, HTML/CSS</li>
+        </ul>
+      </div>
+      <div class="skill-cat">
+        <h3>Data & Modeling</h3>
+        <ul>
+          <li>PyTorch, TensorFlow, Scikit-learn</li>
+          <li>Pandas, NumPy</li>
+          <li>OpenCV, YOLO, CNNs</li>
+        </ul>
+      </div>
+      <div class="skill-cat">
+        <h3>Infrastructure</h3>
+        <ul>
+          <li>AWS (Lambda, EC2, S3), Google Cloud</li>
+          <li>Docker, Git/GitHub</li>
+        </ul>
+      </div>
+      <div class="skill-cat">
+        <h3>Applied Research</h3>
+        <ul>
+          <li>Retrieval-augmented systems, LangChain</li>
+          <li>Selenium & scripted automation</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="reveal" id="writing">
+  <div class="container">
+    <div class="section-title">07 · Writing</div>
+    <h2>Publications & Writing</h2>
+
+    <div class="pub-item">
+      <div class="pub-title">ICLI 2025 — Optimizing Multilingual Retrieval Systems for Domain-Specific Chatbots</div>
+      <div class="pub-desc">Co-authored paper on the AyurSanvaad architecture — a 25% lift in response relevance and a framework that held up across 20+ Indian languages.</div>
+      <a href="https://www.atlantis-press.com/proceedings/icli-25/126015230" target="_blank">Read the paper ↗</a>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-title">Enhancing MiDaS Architecture with Novel Attention Mechanisms</div>
+      <div class="pub-desc">Write-up on adding a custom attention block to MiDaS — a 10% cut in indoor depth error and better generalization to unseen environments.</div>
+      <a href="https://medium.com/@atharvmalusare/a-comparative-study-on-monocular-depth-estimation-a12f6b847087" target="_blank">Read the article ↗</a>
+    </div>
+  </div>
+</section>
+
+<section class="reveal" id="contact">
+  <div class="container">
+    <div class="section-title">08 · Contact</div>
+    <h2>Get In Touch</h2>
+    <p style="color:var(--muted);max-width:600px;margin-bottom:24px;">Open to software engineering, backend, and research-adjacent roles. Always happy to talk shop — reach out.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="mailto:atharv.malusare.dev@gmail.com">Email Me</a>
+      <a class="btn" href="Atharv_Malusare_Resume.pdf" download="Atharv_Malusare_Resume.pdf">Download Resume ⬇</a>
+      <a class="btn" href="https://www.linkedin.com/in/atharvmalusare" target="_blank">LinkedIn</a>
+      <a class="btn" href="https://github.com/atharvMalusare" target="_blank">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="socials">
+      <a href="https://github.com/atharvMalusare" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/atharvmalusare" target="_blank">LinkedIn</a>
+      <a href="https://x.com/AtharvMalusare" target="_blank">Twitter</a>
+      <a href="https://medium.com/@atharvmalusare" target="_blank">Medium</a>
+    </div>
+    <p>&copy; 2026 Atharv Malusare.</p>
+    <img src="https://api.visitorbadge.io/api/visitors?path=atharvmalusare-portfolio&label=views&countColor=%235eead4&style=flat-square" alt="visitor count" style="margin-top:10px;opacity:0.7;height:20px;">
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in-view'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
