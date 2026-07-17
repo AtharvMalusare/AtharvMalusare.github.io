@@ -38,12 +38,20 @@
   .navlinks a:hover{color:var(--accent);text-decoration:none;}
 
   /* Terminal hero */
-  header.hero{padding:90px 0 70px;border-bottom:1px solid var(--border);}
+  header.hero{padding:170px 0 70px;border-bottom:1px solid var(--border);}
   .terminal{
+    position:relative;
     background:var(--card);border:1px solid var(--border);border-radius:10px;
-    max-width:640px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.4);
+    max-width:640px;overflow:visible;box-shadow:0 20px 60px rgba(0,0,0,0.4);
   }
-  .term-bar{display:flex;align-items:center;gap:6px;padding:10px 14px;border-bottom:1px solid var(--border);background:#111118;}
+  .avatar{
+    position:absolute;
+    top:-130px;left:40px;
+    width:130px;height:auto;object-fit:contain;
+    z-index:1;
+    filter:drop-shadow(0 -6px 16px rgba(0,0,0,0.5));
+  }
+  .term-bar{position:relative;z-index:2;display:flex;align-items:center;gap:6px;padding:10px 14px;border-bottom:1px solid var(--border);background:#111118;border-radius:10px 10px 0 0;}
   .dot{width:10px;height:10px;border-radius:50%;}
   .dot.red{background:#ff5f56;}
   .dot.yellow{background:#ffbd2e;}
@@ -189,6 +197,7 @@
 <header class="hero">
   <div class="container">
     <div class="terminal">
+      <img src="avatar.png" alt="Atharv Malusare" class="avatar">
       <div class="term-bar">
         <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
         <span class="term-title">atharv@bloomington: ~</span>
